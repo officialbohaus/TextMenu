@@ -12,5 +12,6 @@ public class TestDriver {
         myMenu.setDescription("My Description");
         myMenu.addMenuItem(item3);
         myMenu.displayMenu();
+        myMenu.queryUser();
     }
 }

@@ -1,5 +1,7 @@
 package TextMenu;
 
+import java.util.Scanner;
+
 public class TextMenu {
     
     private MenuItem[] options;
@@ -48,7 +50,7 @@ public class TextMenu {
     }
 
     public String getMenu() {
-        String menuText = "";
+        String menuText = "\n";
         if (!menuTitle.equals(titleDefault)) {
             menuText += "--| " + menuTitle + " |-----\n";
         }
@@ -56,7 +58,7 @@ public class TextMenu {
             menuText += "| " + menuDescription + " |\n";
         }
         for (int i = 0; i < options.length; i++) {
-            menuText += "\t  " + i + ") " + options[i].getTitle() + "\n";
+            menuText += "   " + i + ") " + options[i].getTitle() + "\n";
         }
         return menuText;
     }
@@ -66,8 +68,17 @@ public class TextMenu {
     }
 
     public void queryUser() {
-        // logic for having user select a menu item via number
-        // logic for ensuring menu has displayed first (Needed?)
-        // logic for ensuring player chooses menu item
+        Scanner keyboard = new Scanner(System.in);    
+        do {
+            System.out.print("Please choose an option: ");
+            userChoice = keyboard.nextInt();
+            if (userChoice >= options.length || userChoice < 0) {
+                System.out.println("\nInvalid choice! Must be between 0 - " + (options.length - 1));
+            }
+        } while (userChoice >= options.length || userChoice < 0);
+        options[userChoice].select();
+        keyboard.close();
     }
+        // logic for ensuring menu has displayed first (Needed?)
 }
+
